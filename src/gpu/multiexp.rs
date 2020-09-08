@@ -293,7 +293,7 @@ where
     E: Engine,
 {
     kernels: Vec<SingleMultiexpKernel<E>>,
-    _lock: locks::GPULock, // RFC 1857: struct fields are dropped in the same order as they are declared.
+    //_lock: locks::GPULock, // RFC 1857: struct fields are dropped in the same order as they are declared.
 }
 
 impl<E> MultiexpKernel<E>
@@ -301,7 +301,7 @@ where
     E: Engine,
 {
     pub fn create(priority: bool) -> GPUResult<MultiexpKernel<E>> {
-        let lock = locks::GPULock::lock();
+        //let lock = locks::GPULock::lock();
 
         let kernels: Vec<_> = GPU_NVIDIA_DEVICES
             .iter()
@@ -327,7 +327,7 @@ where
         }
         return Ok(MultiexpKernel::<E> {
             kernels,
-            _lock: lock,
+            //_lock: lock,
         });
     }
 
